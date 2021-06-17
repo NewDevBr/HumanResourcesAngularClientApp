@@ -1,0 +1,30 @@
+<div class="row h-100">
+    <div class="col-sm h-100 align-self-center">
+      <div class="container">
+        <h1>Form Login</h1>
+        <form>
+          <div class="form-check pb-2">
+            <input type="checkbox" name="admin" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Check this if you are admin</label>
+          </div>
+          <div class="form-group">
+            <input max="45" name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" required>
+          </div>
+          <div class="form-group">
+            <input  max="45" type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required>
+          </div>
+          <div class="row">
+            <div class="col">
+              <button type="submit" class="btn btn-primary mr-3">Sign in</button>
+              <button (click)="navigateToSignUp()" class="btn btn-outline-primary">Sign up</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    
+    <div class="col-sm h-100">
+      <img src="./assets/images/Checklist.jpg" class="img-fluid" alt="Imagem responsiva">
+    </div>
+  </div>
+  <router-outlet></router-outlet>
