@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastService } from './services/toast/toast.service';
 
 @Component({
   selector: 'app-root',
@@ -8,5 +9,6 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'Human Resources';
-  constructor(private router: Router) { }
+  constructor(private router: Router, public toastService: ToastService) { }
+  
 }

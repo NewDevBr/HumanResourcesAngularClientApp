@@ -2,20 +2,30 @@
     <div class="col-sm h-100 align-self-center">
       <div class="container">
         <h1>Form Login</h1>
-        <form>
+        <form [formGroup]="form" (ngSubmit)="login()">
           <div class="form-check pb-2">
-            <input type="checkbox" name="admin" class="form-check-input" id="exampleCheck1">
+            <input type="checkbox" formControlName="admin" class="form-check-input" id="exampleCheck1">
             <label class="form-check-label" for="exampleCheck1">Check this if you are admin</label>
           </div>
           <div class="form-group">
-            <input max="45" name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" required>
+            <input max="45" formControlName="email" type="email" class="form-control" placeholder="Enter email" required>
+            <ng-container *ngIf="form.controls.email.touched">
+              <span class="text-danger" *ngIf="form.controls.email.errors">
+                Required field, valid email
+              </span>
+            </ng-container>
           </div>
           <div class="form-group">
-            <input  max="45" type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required>
+            <input max="45" type="password" formControlName="password" class="form-control" placeholder="Password" required>
+            <ng-container *ngIf="form.controls.password.touched">
+              <span class="text-danger" *ngIf="form.controls.password.errors">
+                Required field, min:10, max:45
+              </span>
+            </ng-container>
           </div>
           <div class="row">
             <div class="col">
-              <button type="submit" class="btn btn-primary mr-3">Sign in</button>
+              <button type="submit" [disabled]="!form.valid" class="btn btn-primary mr-3">Sign in</button>
               <button (click)="navigateToSignUp()" class="btn btn-outline-primary">Sign up</button>
             </div>
           </div>

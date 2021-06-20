@@ -1,4 +1,4 @@
-<h1 class="container text-center mt-2">Sign UP!</h1>  
+<h1 class="container text-center mt-2">Sign UP!</h1>
 <div class="row mt-4 mb-4">
   <div class="col">
     <div class="container">
@@ -9,33 +9,68 @@
           <div class="form-group">
             <input type="file" id="img" (change)="onFileChange($event)" class="btn btn-outline-primary" accept="image/*">
           </div>
-  
+          
           <div class="form-group">
             <input  max="45" type="text" formControlName="name" class="form-control" placeholder="Name" required>
+            <ng-container *ngIf="form.controls.name.touched">
+              <span class="text-danger" *ngIf="form.controls.name.errors">
+                Required field, min lenght 3, max 45
+              </span>
+            </ng-container>
           </div>
           
           <div class="form-group">
             <input  max="45" type="text" formControlName="titration" class="form-control" placeholder="Titration" required>
+            <ng-container *ngIf="form.controls.titration.touched">
+              <span class="text-danger" *ngIf="form.controls.titration.errors">
+                Required field, min lenght 3, max 45
+              </span>
+            </ng-container>
           </div>
           
           <div class="form-group">
             <input id="date" type="date" formControlName="birthDate" required>
+            <ng-container *ngIf="form.controls.birthDate.touched">
+              <span class="text-danger" *ngIf="form.controls.birthDate.errors">
+                Required field
+              </span>
+            </ng-container>
           </div>
   
           <div class="form-group">
             <input max="45" type="email" class="form-control" formControlName="email" aria-describedby="emailHelp" placeholder="Enter email" required>
+            <ng-container *ngIf="form.controls.email.touched">
+              <span class="text-danger" *ngIf="form.controls.email.errors">
+                Required field, min lenght 3, max 45, valid email
+              </span>
+            </ng-container>
           </div>
           
           <div class="form-group">
             <input  max="45" type="password" class="form-control" formControlName="password" placeholder="Password" required>
+            <ng-container *ngIf="form.controls.password.touched">
+              <span class="text-danger" *ngIf="form.controls.password.errors">
+                Required field, min 10, max 45
+              </span>
+            </ng-container>
           </div>
   
           <div class="form-group">
             <input  max="45" type="url" class="form-control" formControlName="github" placeholder="Github" required>
+            <ng-container *ngIf="form.controls.github.touched">
+              <span class="text-danger" *ngIf="form.controls.github.errors">
+                Required field, github url
+              </span>
+            </ng-container>
           </div>
           
           <div class="form-group">
             <input  max="45" type="url" class="form-control" formControlName="linkedin" placeholder="Linkedin" required>
+            <ng-container *ngIf="form.controls.linkedin.touched">
+              <span class="text-danger" *ngIf="form.controls.linkedin.errors">
+                Required field, linkedin url
+              </span>
+            </ng-container>
           </div>
   
           <div class="form-check pb-4">
@@ -45,7 +80,7 @@
   
           <div class="row">
             <div class="col">
-              <button type="submit" class="btn btn-primary mr-3">Make your register</button>
+              <button type="submit" class="btn btn-primary mr-3" [disabled]="!form.valid">Make your register</button>
               <button (click)="navigateToLogin()" class="btn btn-outline-primary">Return to login</button>
             </div>
           </div>
@@ -53,7 +88,7 @@
     
     </div>
   </div>
-  
+    
   <div class="col align-self-center">
     <img src="assets/images/signup.png" class="img-fluid" id="logoPhoto">    
   </div>
