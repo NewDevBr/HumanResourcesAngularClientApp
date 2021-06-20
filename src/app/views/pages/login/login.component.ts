@@ -64,7 +64,7 @@ export class LoginComponent implements OnInit {
         .subscribe(
           () => {
             this.router.navigate(['candidate']);
-            this.toastService.show("Welcome to Human Resources admin", {
+            this.toastService.show("Welcome to Human Resources candidate", {
               classname: 'bg-success text-light',
               delay: 2000,
               autohide: true,
@@ -72,7 +72,7 @@ export class LoginComponent implements OnInit {
             });
           },
           () => {
-            this.toastService.show("Error trying to login as admin", {
+            this.toastService.show("Error trying to login as candidate", {
               classname: 'bg-danger text-light',
               delay: 2000,
               autohide: true,
