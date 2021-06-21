@@ -76,16 +76,15 @@ export class SignupComponent implements OnInit {
       (response) => {
         this.toastService.show('Candidate user was registered with success', {
           classname: 'bg-success text-light',
-          delay: 2000,
-          autohide: true,
-          headertext: 'Success'});
+          delay: 3000,
+          autohide: true
+        });
       },
       (error)=>{
         this.toastService.show('Candidate can\'t registered with success', {
           classname: 'bg-danger text-light',
-          delay: 2000,
-          autohide: true,
-          headertext: 'Error'
+          delay: 3000,
+          autohide: true
         });
       }
     );

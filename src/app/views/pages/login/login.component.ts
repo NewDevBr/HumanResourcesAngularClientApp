@@ -66,17 +66,15 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['candidate']);
             this.toastService.show("Welcome to Human Resources candidate", {
               classname: 'bg-success text-light',
-              delay: 2000,
-              autohide: true,
-              headertext: 'Success'
+              delay: 3000,
+              autohide: true
             });
           },
-          () => {
-            this.toastService.show("Error trying to login as candidate", {
+          (response) => {
+            this.toastService.show("Error trying to login as candidate " + response.body.message, {
               classname: 'bg-danger text-light',
-              delay: 2000,
-              autohide: true,
-              headertext: 'Error'
+              delay: 3000,
+              autohide: true
             });
           }
         );
@@ -88,17 +86,15 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['admin']);
             this.toastService.show("Welcome to Human Resources admin", {
               classname: 'bg-success text-light',
-              delay: 2000,
-              autohide: true,
-              headertext: 'Success'
+              delay: 3000,
+              autohide: true
             });
           },
-          () => {
-            this.toastService.show("Error trying to login as admin", {
+          (response) => {
+            this.toastService.show("Error trying to login as admin " + response.message, {
               classname: 'bg-danger text-light',
-              delay: 2000,
-              autohide: true,
-              headertext: 'Error'
+              delay: 3000,
+              autohide: true
             });
           }
         );

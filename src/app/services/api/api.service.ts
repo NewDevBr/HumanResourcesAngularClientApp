@@ -45,4 +45,22 @@ export class ApiService {
   candidateLogout(){
     return this.http.post<any>(this.CANDIDATE_ROUTE +'/revokeToken', {}).subscribe();
   }
+
+  updateAdminData(id: number, name: string, post:string, email: string){
+    return this.http.put<any>(this.ADMIN_ROUTE +  "/" + id, {
+      name: name,
+      post: post,
+      email: email
+    });
+  }
+
+  updateAdminPassword(id: number, password: string){
+    return this.http.put(this.ADMIN_ROUTE + "/changePassword/" + id,{
+      password: password
+    })
+  }
+
+  deleteAdmin(id: number){
+    return this.http.delete(this.ADMIN_ROUTE+'/'+id);
+  }
 }

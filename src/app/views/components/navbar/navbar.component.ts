@@ -4,11 +4,11 @@ import { AuthAdminService } from 'src/app/services/authAdminService/auth-admin.s
 import { ToastService } from 'src/app/services/toast/toast.service';
 
 @Component({
-  selector: 'app-admin-nav-bar',
-  templateUrl: './admin-nav-bar.component.html',
-  styleUrls: ['./admin-nav-bar.component.css']
+  selector: 'app-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.css']
 })
-export class AdminNavBarComponent implements OnInit {
+export class NavbarComponent implements OnInit {
 
   constructor(
     private router : Router,
@@ -19,6 +19,11 @@ export class AdminNavBarComponent implements OnInit {
   logout(){
     this.authAdmin.logout();
     this.router.navigate(['login']);
+    this.toastService.show('I hope to see you again', {
+      classname: 'bg-primary text-light',
+      delay: 2000 ,
+      autohide: true
+    });
   }
 
   navbarCollapsed = true;

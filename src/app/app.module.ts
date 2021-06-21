@@ -12,16 +12,13 @@ import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastComponent } from './views/components/toast/toast.component';
 import { AuthAdminService } from './services/authAdminService/auth-admin.service';
 import { AuthCandidateService } from './services/authCandidateService/auth-candidate.service';
-import { AdminComponent } from './views/pages/admin/admin.component';
-import { CandidateComponent } from './views/pages/candidate/candidate.component';
-import { AdminNavBarComponent } from './views/template/adminTemplate/admin-nav-bar/admin-nav-bar.component';
-import { AdminFooterComponent } from './views/template/adminTemplate/admin-footer/admin-footer.component';
-import { CandidateFooterComponent } from './views/template/candidateTemplate/candidate-footer/candidate-footer.component';
-import { CandidateNavBarComponent } from './views/template/candidateTemplate/candidate-nav-bar/candidate-nav-bar.component';
-import { AdminVacanciesComponent } from './views/template/adminTemplate/admin-vacancies/admin-vacancies.component';
-import { AdminProfileComponent } from './views/template/adminTemplate/admin-profile/admin-profile.component';
 import { AdminInterceptor } from './interceptors/admin/admin.interceptor';
 import { CandidateInterceptor } from './interceptors/candidate/candidate.interceptor';
+import { FooterComponent } from './views/components/footer/footer.component';
+import { NavbarComponent } from './views/components/navbar/navbar.component';
+import { AdminVacanciesComponent } from './views/pages/admin/admin-vacancies/admin-vacancies.component';
+import { PaginationComponent } from './views/components/pagination/pagination.component';
+import { AdminProfileComponent } from './views/pages/admin/admin-profile/admin-profile.component';
 
 @NgModule({
   declarations: [
@@ -29,13 +26,10 @@ import { CandidateInterceptor } from './interceptors/candidate/candidate.interce
     LoginComponent,
     SignupComponent,
     ToastComponent,
-    AdminComponent,
-    CandidateComponent,
-    AdminNavBarComponent,
-    AdminFooterComponent,
-    CandidateFooterComponent,
-    CandidateNavBarComponent,
+    FooterComponent,
+    NavbarComponent,
     AdminVacanciesComponent,
+    PaginationComponent,
     AdminProfileComponent,
   ],
   imports: [

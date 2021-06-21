@@ -28,6 +28,12 @@ export class AuthAdminService {
     }));
   }
 
+  updateData(newAdmin: Admin | undefined){
+    localStorage.setItem('currentAdmin', JSON.stringify(newAdmin));
+    this.currentAdminSubject.next(newAdmin);
+    return newAdmin;
+  }
+
   logout() {
     this.api.administrativeLogout();
     localStorage.removeItem('currentAdmin');
