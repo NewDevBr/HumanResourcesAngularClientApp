@@ -11,6 +11,7 @@ export class ApiService {
   SERVER_ADDR: string = "http://localhost:8000/api";
   CANDIDATE_ROUTE: string = this.SERVER_ADDR + "/candidate";
   ADMIN_ROUTE: string = this.SERVER_ADDR + "/admin";
+  TECH_ROUTE: string = this.SERVER_ADDR + "/technology";
 
   signup(parameters : any){
     var formData: any = new FormData();
@@ -55,12 +56,31 @@ export class ApiService {
   }
 
   updateAdminPassword(id: number, password: string){
-    return this.http.put(this.ADMIN_ROUTE + "/changePassword/" + id,{
+    return this.http.put(this.ADMIN_ROUTE + "/changePassword/" + id, {
       password: password
     })
   }
 
   deleteAdmin(id: number){
     return this.http.delete(this.ADMIN_ROUTE+'/'+id);
+  }
+
+  createTechnology(name: string){
+    return this.http.post(this.TECH_ROUTE, {
+      name: name
+    });
+  }
+
+  getTechnologies(page?: number){
+    return this.http.get(this.TECH_ROUTE +"?page=" + page);
+  }
+
+  editTechonology(id:number, description: string){
+    return this.http.put(this.TECH_ROUTE + '/' + id, {name: description});
+  }
+
+  deleteTechnology(id: number){
+    console.log("fez a requisição");
+    return this.http.delete(this.TECH_ROUTE + '/' + id);
   }
 }

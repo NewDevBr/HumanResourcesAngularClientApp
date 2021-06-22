@@ -19,6 +19,7 @@ import { NavbarComponent } from './views/components/navbar/navbar.component';
 import { AdminVacanciesComponent } from './views/pages/admin/admin-vacancies/admin-vacancies.component';
 import { PaginationComponent } from './views/components/pagination/pagination.component';
 import { AdminProfileComponent } from './views/pages/admin/admin-profile/admin-profile.component';
+import { AdminTechnologiesComponent } from './views/pages/admin/admin-technologies/admin-technologies.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { AdminProfileComponent } from './views/pages/admin/admin-profile/admin-p
     AdminVacanciesComponent,
     PaginationComponent,
     AdminProfileComponent,
+    AdminTechnologiesComponent,
   ],
   imports: [
     BrowserModule,

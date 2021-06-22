@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-admin-vacancies',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminVacanciesComponent implements OnInit {
 
+  showVacancyForm: boolean = false;
+
+
   constructor() { }
 
   ngOnInit(): void {
   }
+
 
 }

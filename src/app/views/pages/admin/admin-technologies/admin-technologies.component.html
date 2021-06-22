@@ -1,0 +1,73 @@
+<h1 class="mt-5">Save a technology</h1>
+<form [formGroup]="techFormGroup" (ngSubmit)="saveTech()" class="mb-5">
+    <ng-container *ngIf="idTech">
+        <span class="border rounded border-dark my-2 px-1 py-1">
+           You are editing tech <b> # {{ idTech }} </b>
+        </span>
+    </ng-container>
+    <div class="form-group pt-2">
+        <input max="45" formControlName="description" type="text"
+        class="form-control" placeholder="Enter new description" id="desc"  required>
+        <ng-container *ngIf="techFormGroup.controls.description.touched">
+        <span class="text-danger" *ngIf="techFormGroup.controls.description.errors && !techFormGroup.valid">
+            Required field, max lenght 45
+        </span>
+        </ng-container>
+    </div>
+    <button type="submit" [disabled]="!techFormGroup.valid" class="btn btn-primary mr-3">Save this tech</button>
+</form>
+
+<h3 class="text-center mt-2 bg-dark rounded text-light pb-2 pt-2"> Technologies list</h3>
+<div *ngIf="!data" id="loading">
+    <img src="./assets/images/loading.gif">
+</div>
+<div *ngIf="data">
+    <table st-table="data" class="table table-striped border rounded mb-5">
+        <thead>
+            <tr>
+                <th>#id</th>
+                <th>Description</th>
+                <th>Created at</th>
+                <th>Updated at</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of data; index as i;">
+                <td> {{ data[i].id }} </td>
+                <td> {{ data[i].name }} </td>
+                <td> {{ data[i].created_at | date: 'dd/MM/yyyy - HH:mm'}}</td>
+                <td>
+                    <ng-container *ngIf="data[i].created_at == data[i].updated_at; else updated_at">
+                        <span> Never updated </span>
+                    </ng-container>
+                    <ng-template #updated_at>
+                        {{ data[i].updated_at | date: 'dd/MM/yyyy - HH:mm'}}
+                    </ng-template>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-warning mr-2" (click)="editTech(data[i].id, data[i].name)">
+                        <i class="bi bi-pencil-fill"></i> Edit
+                    </button>
+                    <button type="button" class="btn btn-danger" (click)="deleteTech(data[i].id, data[i].name)">
+                        <i class="bi bi-trash-fill"></i> Delete
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><b>Pagination ({{ currentPage }} / {{ lastPage }})</b></td>
+                <td>
+                    <button type="button" [disabled]="firstPage==currentPage" class="btn btn-primary mr-2" (click)="previousPage()">
+                        <i class="bi bi-arrow-left"></i> Previous
+                    </button>
+                    <button type="button" [disabled]="currentPage==lastPage" class="btn btn-primary" (click)="nextPage()">
+                        Next <i class="bi bi-arrow-right"></i>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

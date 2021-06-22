@@ -7,6 +7,7 @@ import { PaginationComponent } from './views/components/pagination/pagination.co
 import { AdminVacanciesComponent } from './views/pages/admin/admin-vacancies/admin-vacancies.component';
 import { LoginComponent } from './views/pages/login/login.component';
 import { SignupComponent } from './views/pages/signup/signup.component';
+import { AdminTechnologiesComponent } from './views/pages/admin/admin-technologies/admin-technologies.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -17,6 +18,7 @@ const routes: Routes = [
       { path: '', pathMatch: 'full', redirectTo: 'vacancies' },
       { path: 'vacancies', component: AdminVacanciesComponent },
       { path: 'profile', component: AdminProfileComponent },
+      { path: 'technologies', component: AdminTechnologiesComponent },
     ]
   },
   //{ path: 'candidate', component: CandidateComponent, canActivate: [CandidateGuard]},
