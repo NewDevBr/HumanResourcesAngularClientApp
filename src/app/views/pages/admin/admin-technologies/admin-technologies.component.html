@@ -46,10 +46,10 @@
                     </ng-template>
                 </td>
                 <td>
-                    <button type="button" class="btn btn-warning mr-2" (click)="editTech(data[i].id, data[i].name)">
+                    <button type="button" class="btn btn-info mr-2" (click)="editTech(data[i].id, data[i].name)">
                         <i class="bi bi-pencil-fill"></i> Edit
                     </button>
-                    <button type="button" class="btn btn-danger" (click)="deleteTech(data[i].id, data[i].name)">
+                    <button type="button" class="btn btn-primary" (click)="deleteTech(data[i].id, data[i].name)">
                         <i class="bi bi-trash-fill"></i> Delete
                     </button>
                 </td>
@@ -60,10 +60,10 @@
                 <td></td>
                 <td><b>Pagination ({{ currentPage }} / {{ lastPage }})</b></td>
                 <td>
-                    <button type="button" [disabled]="firstPage==currentPage" class="btn btn-primary mr-2" (click)="previousPage()">
+                    <button type="button" [disabled]="currentPage==1" class="btn btn-dark mr-2" (click)="previousPage()">
                         <i class="bi bi-arrow-left"></i> Previous
                     </button>
-                    <button type="button" [disabled]="currentPage==lastPage" class="btn btn-primary" (click)="nextPage()">
+                    <button type="button" [disabled]="currentPage==lastPage" class="btn btn-dark" (click)="nextPage()">
                         Next <i class="bi bi-arrow-right"></i>
                     </button>
                 </td>

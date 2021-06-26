@@ -11,3 +11,5 @@
     border-radius: 50%;
     object-fit: cover;
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

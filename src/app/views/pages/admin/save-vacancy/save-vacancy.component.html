@@ -1,0 +1,87 @@
+<h3 class="mb-4">Type a vacancy data</h3>
+<ng-container *ngIf="vacancyId">
+    <span class="border rounded border-dark my-4 px-1 py-1">
+        You are editing vacancy id <b> #{{ this.vacancyId }} </b>
+    </span>
+</ng-container>
+<div class="container row mt-3">
+    <div class="col-">
+        <form [formGroup]="formTech">
+            <div class="form-group">
+                <input max="45" id="tech" (keyup)="getTechnologies()" formControlName="tech" type="text"
+                    class="form-control" placeholder="Type a tech" required>
+            </div>
+        </form>
+    </div>
+    <div class="col">
+        <div >
+            <div *ngIf="technologies.length">
+                <span *ngFor="let item of technologies; index as i;">
+                    <label class="border border-dark rounded py-1 px-1 mx-1 my-1 searchresult" (click)="removeToTechnologies(technologies[i])">
+                        {{ technologies[i].name }}
+                    </label>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div *ngIf="data">
+    <label>Search result: </label>
+    <span *ngFor="let tech of data; index as i;">
+        <label class="border border-dark rounded py-1 px-1 mx-1 my-1 searchresult" (click)="addToTechnologies( tech )">
+            {{ tech.name }}
+        </label>
+    </span>
+</div>
+
+<form [formGroup]="formVacancy" (ngSubmit)="saveVacancy()" class="mt-1">
+    <div class="form-group">
+        <input maxlength="45" (click)="clearData()" formControlName="title" type="text" class="form-control" placeholder="Type a vacancy title"
+            required>
+        <ng-container *ngIf="formVacancy.controls.title.touched">
+            <span class="text-danger" *ngIf="formVacancy.controls.title.errors">
+                Required field, valid title
+            </span>
+        </ng-container>
+    </div>
+
+    <div class="form-group">
+        <textarea class="form-control" formControlName="description" maxlength="3500"
+            placeholder="Type a vacancy description" rows="10"></textarea>
+        <ng-container *ngIf="formVacancy.controls.description.touched">
+            <span class="text-danger" *ngIf="formVacancy.controls.description.errors">
+                Required field, valid description
+            </span>
+        </ng-container>
+    </div>
+
+    <div class="form-group">
+        <div class="form-check pb-2">
+            <input type="checkbox" formControlName="remote" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Enable remote vacancy</label>
+        </div>
+        <div class="form-group">
+            <label class="form-check-label">Hiring model: </label>
+            <select class="form-control" formControlName="hiring">
+                <option value="CLT" selected>CLT</option>
+                <option value="PJ">PJ</option>
+                <option value="CLT/PJ">CLT/PJ</option>
+                <option value="Internship">Intership</option>
+            </select>
+        </div>
+    </div>
+    <button type="submit" [disabled]="!formVacancy.valid" class="btn btn-primary mr-3">
+        <ng-container *ngIf="vacancyId; else editing">
+            <span>
+                <i class="bi bi-pencil-fill"></i> Save edited vacancy
+            </span>
+        </ng-container>
+        <ng-template #editing>
+            <span>
+                <i class="bi bi-plus-circle"></i> Save a new vacancy
+            </span>
+        </ng-template> 
+    </button>
+</form>

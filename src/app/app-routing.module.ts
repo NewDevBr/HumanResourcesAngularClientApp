@@ -8,6 +8,8 @@ import { AdminVacanciesComponent } from './views/pages/admin/admin-vacancies/adm
 import { LoginComponent } from './views/pages/login/login.component';
 import { SignupComponent } from './views/pages/signup/signup.component';
 import { AdminTechnologiesComponent } from './views/pages/admin/admin-technologies/admin-technologies.component';
+import { SaveVacancyComponent } from './views/pages/admin/save-vacancy/save-vacancy.component';
+import { ListVacanciesComponent } from './views/pages/admin/list-vacancies/list-vacancies.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -15,8 +17,15 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'admin', component: PaginationComponent, canActivate: [AdminGuard],
     children: [
-      { path: '', pathMatch: 'full', redirectTo: 'vacancies' },
-      { path: 'vacancies', component: AdminVacanciesComponent },
+      { path: '', pathMatch: 'full', redirectTo: 'technologies' },
+      { path: 'vacancies', component: AdminVacanciesComponent, children:
+        [
+          { path: '', pathMatch: 'full', redirectTo: 'new' },
+          { path: 'new', component: SaveVacancyComponent },
+          { path:'edit/:id', component: SaveVacancyComponent },
+          { path: 'list', component: ListVacanciesComponent },
+        ]
+      },
       { path: 'profile', component: AdminProfileComponent },
       { path: 'technologies', component: AdminTechnologiesComponent },
     ]

@@ -20,6 +20,8 @@ import { AdminVacanciesComponent } from './views/pages/admin/admin-vacancies/adm
 import { PaginationComponent } from './views/components/pagination/pagination.component';
 import { AdminProfileComponent } from './views/pages/admin/admin-profile/admin-profile.component';
 import { AdminTechnologiesComponent } from './views/pages/admin/admin-technologies/admin-technologies.component';
+import { SaveVacancyComponent } from './views/pages/admin/save-vacancy/save-vacancy.component';
+import { ListVacanciesComponent } from './views/pages/admin/list-vacancies/list-vacancies.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,8 @@ import { AdminTechnologiesComponent } from './views/pages/admin/admin-technologi
     PaginationComponent,
     AdminProfileComponent,
     AdminTechnologiesComponent,
+    SaveVacancyComponent,
+    ListVacanciesComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,7 +44,7 @@ import { AdminTechnologiesComponent } from './views/pages/admin/admin-technologi
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    NgbToastModule
+    NgbToastModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AdminInterceptor, multi: true },

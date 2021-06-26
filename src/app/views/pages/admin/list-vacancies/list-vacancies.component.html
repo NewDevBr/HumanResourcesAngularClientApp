@@ -1,0 +1,52 @@
+<h3 class="text-center bg-dark rounded text-light pb-2 pt-2"> Vacancies list</h3>
+<div *ngIf="!data" id="loading">
+    <img src="./assets/images/loading.gif">
+</div>
+
+<div *ngIf="data">
+    <div *ngFor="let vacancy of data; let i = index" class="card mt-2 mb-2">
+        <div class="card-header">
+            <div class="row">
+                <h5 class="ml-4 font-weight-bold"> {{ vacancy.title }} </h5>
+                <h5 class="ml-auto mr-4"> #id: {{ vacancy.id }} </h5>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row mx-auto">
+                <label class="mr-auto"> Created at {{ vacancy.created_at | date: 'dd/MM/yyyy - HH:mm' }} </label>
+                
+                <div *ngFor="let tech of vacancy.technologies">
+                    <label class="mr-auto border border-dark rounded py-1 px-1 ml-1"> {{ tech.name }} </label>
+                </div>
+
+                <label class="ml-1 rounded bg-dark text-light px-2 py-1">{{ vacancy.hiring }}</label>
+                <label class="ml-1 bg-dark text-light rounded py-1 px-2">{{ vacancy.remote ? "Home Office" : "In enterprise" }}</label>
+            </div>
+
+            <ng-container *ngIf="vacancy.created_at == vacancy.updated_at; else updated_at">
+                <span> Never updated </span>
+            </ng-container>
+            <ng-template #updated_at>
+               Last updated at {{ vacancy.updated_at | date: 'dd/MM/yyyy - HH:mm'}}
+            </ng-template> <br>
+            <label class="font-weight-bold mt-2"> Vacancy description</label> <br>
+            <label (click)="showMore[i] = !showMore[i]"> {{ showMore[i] ? vacancy.description : (vacancy.description | slice:0:500) + ' (Read more ...)' }} </label> 
+            
+            <div class="row mx-auto mb-1 mt-4">
+                <label class="mr-auto my-auto"> Created by {{ vacancy.admin.name }} #{{ vacancy.admin.id }} </label>
+                <button class="btn btn-info ml-auto mr-2" (click)="editVacancy( vacancy.id )"> <i class="bi bi-pencil-fill"></i> Edit vacancy</button>
+                <button class="btn btn-primary" (click)="deleteVacancy( vacancy.id )"> <i class="bi bi-trash-fill"></i> Delete vacancy</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mx-auto mt-4">
+        <button type="button" [disabled]="currentPage == 1" class="btn btn-primary mr-2" (click)="previousPage()">
+            <i class="bi bi-arrow-left"></i> Previous
+        </button>
+        <button type="button" [disabled]="currentPage == lastPage" class="btn btn-primary" (click)="nextPage()">
+            Next <i class="bi bi-arrow-right"></i>
+        </button>
+        <label class="mx-2 my-auto"> Page {{ currentPage }} of {{ lastPage }}</label>
+    </div>
+</div>

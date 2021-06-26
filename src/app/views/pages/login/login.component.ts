@@ -65,7 +65,7 @@ export class LoginComponent implements OnInit {
           () => {
             this.router.navigate(['candidate']);
             this.toastService.show("Welcome to Human Resources candidate", {
-              classname: 'bg-success text-light',
+              classname: 'bg-primary text-light',
               delay: 3000,
               autohide: true
             });
@@ -85,7 +85,7 @@ export class LoginComponent implements OnInit {
           () => {
             this.router.navigate(['admin']);
             this.toastService.show("Welcome to Human Resources admin", {
-              classname: 'bg-success text-light',
+              classname: 'bg-primary text-light',
               delay: 3000,
               autohide: true
             });

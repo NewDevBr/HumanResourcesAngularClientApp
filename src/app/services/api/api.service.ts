@@ -12,6 +12,7 @@ export class ApiService {
   CANDIDATE_ROUTE: string = this.SERVER_ADDR + "/candidate";
   ADMIN_ROUTE: string = this.SERVER_ADDR + "/admin";
   TECH_ROUTE: string = this.SERVER_ADDR + "/technology";
+  VACANCY_ROUTE: string = this.SERVER_ADDR + "/vacancy";
 
   signup(parameters : any){
     var formData: any = new FormData();
@@ -75,12 +76,64 @@ export class ApiService {
     return this.http.get(this.TECH_ROUTE +"?page=" + page);
   }
 
+  getTechnologiesSearchResult(searchedValue: string){
+    return this.http.get(this.TECH_ROUTE + '/like/' + searchedValue);
+  }
+
   editTechonology(id:number, description: string){
     return this.http.put(this.TECH_ROUTE + '/' + id, {name: description});
   }
 
   deleteTechnology(id: number){
-    console.log("fez a requisição");
     return this.http.delete(this.TECH_ROUTE + '/' + id);
+  }
+
+  createVacancy(
+    title: string,
+    description: string,
+    remote: number,
+    hiring: string,
+    admin_id: number,
+    technologies: any
+  ){
+    return this.http.post(this.VACANCY_ROUTE,{
+      title: title,
+      description: description,
+      remote: remote,
+      hiring: hiring,
+      admin_id: admin_id,
+      technologies: technologies
+    });
+  }
+
+
+  getAVacancy(idVacancy : number){
+    return this.http.get(this.VACANCY_ROUTE + '/' + idVacancy);
+  }
+
+  getVacanciesList(page?: number){
+    return this.http.get(this.VACANCY_ROUTE +"?page=" + page);
+  }
+
+  updateVacancy(
+    idVacancy : number,
+    title: string,
+    description: string,
+    remote: number,
+    hiring: string,
+    admin_id: number,
+    technologies: any){
+    return this.http.put(this.VACANCY_ROUTE + '/' + idVacancy,{
+      title: title,
+      description: description,
+      remote: remote,
+      hiring: hiring,
+      admin_id: admin_id,
+      technologies: technologies
+    });
+  }
+
+  deleteVacancy(vacancyId : number){
+    return this.http.delete(this.VACANCY_ROUTE +'/'+ vacancyId);
   }
 }

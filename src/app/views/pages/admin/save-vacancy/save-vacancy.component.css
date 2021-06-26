@@ -1,0 +1,8 @@
+select {
+    max-width: 250px;
+}
+
+.searchresult:hover{
+    background-color: grey;
+    color: white;
+}
