@@ -1,0 +1,112 @@
+<div class="container mx-auto my-5">
+    <div class="row">
+
+        <div class="col">
+            <h3 class="mb-3">Create a new admin</h3>
+            <img [src]="imageSource" *ngIf="imageSource" id="profilePhoto">
+            <form (ngSubmit)="saveNewAdmin()" [formGroup]="newAdminForm" enctype="multipart/form-data">
+                <div class="form-group">
+                    <input type="file" id="img" (change)="onFileChange($event)" class="btn btn-outline-dark"
+                        accept="image/*">
+                </div>
+
+                <div class="form-group">
+                    <input maxLenght="45" type="text" formControlName="name" class="form-control" placeholder="Name"
+                        required>
+                    <ng-container *ngIf="newAdminForm.controls.name.touched">
+                        <span class="text-danger" *ngIf="newAdminForm.controls.name.errors">
+                            Required field, min lenght 3, max 45
+                        </span>
+                    </ng-container>
+                </div>
+
+                <div class="form-group">
+                    <input maxLenght="45" type="text" formControlName="post" class="form-control"
+                        placeholder="Admin post" required>
+                    <ng-container *ngIf="newAdminForm.controls.post.touched">
+                        <span class="text-danger" *ngIf="newAdminForm.controls.post.errors">
+                            Required field, min lenght 3, max 45
+                        </span>
+                    </ng-container>
+                </div>
+
+                <div class="form-group">
+                    <input maxLenght="45" type="email" formControlName="email" class="form-control" placeholder="Email"
+                        required>
+                    <ng-container *ngIf="newAdminForm.controls.email.touched">
+                        <span class="text-danger" *ngIf="newAdminForm.controls.email.errors">
+                            Required field, min lenght 3, max 45
+                        </span>
+                    </ng-container>
+                </div>
+
+                <div class="form-group">
+                    <input maxLenght="45" type="password" formControlName="password" class="form-control"
+                        placeholder="Password" required>
+                    <ng-container *ngIf="newAdminForm.controls.password.touched">
+                        <span class="text-danger" *ngIf="newAdminForm.controls.password.errors">
+                            Required field, min lenght 3, max 45
+                        </span>
+                    </ng-container>
+                </div>
+                <button type="submit" class="btn btn-dark mr-3" [disabled]="!newAdminForm.valid">
+                    <i class="bi bi-plus-circle"></i> Register new admin
+                </button>
+            </form>
+        </div>
+
+        <div class="col">
+            <h3 class="mb-3">Admins list</h3>
+
+            <div *ngIf="!data; else grid">
+                <img id="loading" src="./assets/images/loading.gif">
+            </div>
+            <ng-template #grid>
+                <table st-table="data" class="table table-striped border rounded mb-5">
+                    <thead>
+                        <tr>
+                            <th>#id</th>
+                            <th>Name</th>
+                            <th>Post</th>
+                            <th>Revokes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let admin of data; index as i;">
+                            <td> {{ admin.id }} </td>
+                            <td> {{ admin.name }} </td>
+                            <td> {{ admin.post }}</td>
+                            <td>
+                                <button type="button" class="btn btn-danger" (click)="revokePrivilegies( admin.id )">
+                                    <i class="bi bi-trash-fill"></i> Revoke Privilegies
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td>
+                                Pag
+                            </td>
+                            <td>
+                                {{ currentPage }} / {{ lastPage }}
+                            </td>
+                            <td>
+                                <button type="button" [disabled]="currentPage==1" class="btn btn-dark"
+                                    (click)="previousPage()">
+                                    <i class="bi bi-arrow-left"></i> Previous
+                                </button>
+                            </td>
+                            <td>
+                                <button type="button" [disabled]="currentPage==lastPage" class="btn btn-dark"
+                                    (click)="nextPage()">
+                                    Next <i class="bi bi-arrow-right"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </ng-template>
+        </div>
+    </div>
+</div>

@@ -10,6 +10,8 @@ import { SignupComponent } from './views/pages/signup/signup.component';
 import { AdminTechnologiesComponent } from './views/pages/admin/admin-technologies/admin-technologies.component';
 import { SaveVacancyComponent } from './views/pages/admin/save-vacancy/save-vacancy.component';
 import { ListVacanciesComponent } from './views/pages/admin/list-vacancies/list-vacancies.component';
+import { AdminCandidatesComponent } from './views/pages/admin/admin-candidates/admin-candidates.component';
+import { AdminsManagementComponent } from './views/pages/admin/admins-management/admins-management.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -26,6 +28,8 @@ const routes: Routes = [
           { path: 'list', component: ListVacanciesComponent },
         ]
       },
+      { path: 'candidates', component: AdminCandidatesComponent },
+      { path: 'management', component: AdminsManagementComponent },
       { path: 'profile', component: AdminProfileComponent },
       { path: 'technologies', component: AdminTechnologiesComponent },
     ]

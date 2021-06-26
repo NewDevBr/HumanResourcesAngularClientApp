@@ -1,0 +1,37 @@
+<div class="container mx-auto">
+    <form [formGroup]="formCandidate" (ngSubmit)="searchCandidate()" class="mt-5">
+        <h3>By what parameter do you want to search for a candidate?</h3>
+        <div class="row mx-auto mt-4">
+            <div class="form-check mr-3">
+                <input class="form-check-input" type="radio" name="parameter" formControlName="parameter" id="code" value="code"
+                    checked>
+                <label class="form-check-label" for="code">
+                    Identification code 
+                </label>
+            </div>
+            <div class="form-check mr-3">
+                <input formControlName="parameter" class="form-check-input" type="radio" name="parameter" id="name" value="name"
+                    checked>
+                <label class="form-check-label" for="name">
+                    Full name
+                </label>
+            </div>
+            <div class="form-check mr-3">
+                <input class="form-check-input" formControlName="parameter" type="radio" name="parameter" id="email" value="email"
+                    checked>
+                <label class="form-check-label" for="email">
+                    Email
+                </label>
+            </div>
+            <div class="form-check mr-3">
+                <input class="form-check-input" formControlName="parameter" type="radio" name="parameter" id="vacancycode" value="vacancycode"
+                    checked>
+                <label class="form-check-label" for="vacancycode">
+                    Vacancy identification code
+                </label>
+            </div>
+            <input type="text"  formControlName="parameterValue" (keyup)="searchCandidate()" class="ml-auto my-auto border border-dark rounded px-2 py-1" placeholder="Type a parameter" maxlength="45" size="45">
+        </div>
+    </form>
+</div>
+<div class="h-100"></div>

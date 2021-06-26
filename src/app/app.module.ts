@@ -22,6 +22,8 @@ import { AdminProfileComponent } from './views/pages/admin/admin-profile/admin-p
 import { AdminTechnologiesComponent } from './views/pages/admin/admin-technologies/admin-technologies.component';
 import { SaveVacancyComponent } from './views/pages/admin/save-vacancy/save-vacancy.component';
 import { ListVacanciesComponent } from './views/pages/admin/list-vacancies/list-vacancies.component';
+import { AdminCandidatesComponent } from './views/pages/admin/admin-candidates/admin-candidates.component';
+import { AdminsManagementComponent } from './views/pages/admin/admins-management/admins-management.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,8 @@ import { ListVacanciesComponent } from './views/pages/admin/list-vacancies/list-
     AdminTechnologiesComponent,
     SaveVacancyComponent,
     ListVacanciesComponent,
+    AdminCandidatesComponent,
+    AdminsManagementComponent,
   ],
   imports: [
     BrowserModule,
