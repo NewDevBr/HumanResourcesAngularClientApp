@@ -13,11 +13,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./admin-profile.component.css']
 })
 export class AdminProfileComponent implements OnInit {
-  
-  hideDeleteAlert : boolean = true;
+
+  hideDeleteAlert: boolean = true;
   hideSaveChanges: boolean = true;
-  url: string;
+
+  host: string = "http://localhost:8000/storage/photos/";
+  url: string = "";
+
   currentUser?: Admin;
+
   form = new FormGroup({
     name: new FormControl('', [
       Validators.required,
@@ -43,6 +47,12 @@ export class AdminProfileComponent implements OnInit {
     ])
   });
 
+  formUpdatePhoto = new FormGroup({
+    img: new FormControl('', [
+      Validators.required
+    ])
+  });
+
   constructor(
     private authAdmin: AuthAdminService,
     private sanitizer: DomSanitizer,
@@ -50,10 +60,14 @@ export class AdminProfileComponent implements OnInit {
     private api: ApiService,
     private router: Router
   ) {
-    this.url = "";
     this.authAdmin.currentAdmin.subscribe(val => {
-      this.url = "http://localhost:8000/storage/photos/" + val.data.pathPhoto.substring(15, val.data.pathPhoto.length);
-      this.currentUser = val;
+      let adminIsUndefined = (typeof val === "undefined");
+      if (!adminIsUndefined) {
+        if (!!Object.values(val).length) {
+          this.url = this.host + val.data.pathPhoto.substring(15, val.data.pathPhoto.length);
+          this.currentUser = val;
+        }
+      }
     });
     this.form.controls['name'].setValue(this.currentUser!.data.name);
     this.form.controls['post'].setValue(this.currentUser!.data.post);
@@ -107,35 +121,35 @@ export class AdminProfileComponent implements OnInit {
     this.api.updateAdminPassword(
       this.currentUser!.data.id,
       this.formNewPasswordData.newPassword.value)
-    .subscribe(()=>{
-      this.formNewPasswordData['newPassword'].setValue('');
-      this.hideSaveChanges = true;
-      this.toastService.show(
-        'Your password was success changed',
-        {
-          classname: 'bg-success text-light',
-          delay: 3000,
-          autohide: true
+      .subscribe(() => {
+        this.formNewPasswordData['newPassword'].setValue('');
+        this.hideSaveChanges = true;
+        this.toastService.show(
+          'Your password was success changed',
+          {
+            classname: 'bg-success text-light',
+            delay: 3000,
+            autohide: true
+          }
+        );
+      },
+        (response) => {
+          this.toastService.show(
+            'Error trying to update your password ' + response.message,
+            {
+              classname: 'bg-danger text-light',
+              delay: 3000,
+              autohide: true
+            }
+          );
         }
       );
-    },
-    (response)=>{
-      this.toastService.show(
-        'Error trying to update your password ' + response.message,
-        {
-          classname: 'bg-danger text-light',
-          delay: 3000,
-          autohide: true
-        }
-      );
-    }
-    );
   }
 
-  deleteAccount(){
+  deleteAccount() {
     this.api.deleteAdmin(this.currentUser!.data.id).subscribe(
-      ()=>{
-        this.toastService.show('Your account has been deleted',{
+      () => {
+        this.toastService.show('Your account has been deleted', {
           classname: 'bg danger text-light',
           delay: 5000,
           autohide: true
@@ -146,6 +160,41 @@ export class AdminProfileComponent implements OnInit {
     )
   }
 
+  photoUpload(event: any) {
+    const reader = new FileReader();
+    if (event.target.files && event.target.files.length) {
+      const [file] = event.target.files;
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.formUpdatePhoto.patchValue({
+          img: event.target.files[0]
+        });
+      };
+    }
+  }
+
+  updatePhoto() {
+    this.api.administrativeUpdateProfilePhoto(
+      this.currentUser!.data.id,
+      this.formUpdatePhoto.controls.img.value
+    ).subscribe((response) => {
+      let path: any = response;
+      this.url = this.host + path.path.substring(15, path.path.length);
+      this.currentUser!.data.pathPhoto = path.path;
+      this.hideSaveChanges = true;
+      this.currentUser!.data.pathPhoto = path.path;
+      this.authAdmin.updateData(this.currentUser);
+      this.formUpdatePhoto.controls['img'].setValue('');
+      this.toastService.show('Your profile photo was changed', {
+        classname: 'bg-success text-light',
+        delay: 8000,
+        autohide: true
+      });
+    }, (response) => {
+      console.log(response);
+    });
+  }
+
   public getSantizeUrl() {
     return this.sanitizer.bypassSecurityTrustUrl(this.url);
   }
@@ -153,7 +202,7 @@ export class AdminProfileComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  showDeleteAlert(){
+  showDeleteAlert() {
     this.hideDeleteAlert = !(this.hideDeleteAlert);
   }
 

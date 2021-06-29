@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
+
 import { AuthAdminService } from 'src/app/services/authAdminService/auth-admin.service';
 
 @Injectable({
@@ -18,7 +18,7 @@ export class AdminGuard implements CanActivate {
       val => {
         this.response = !(typeof val === "undefined" || typeof val.access_token === "undefined");
       }
-    )
+    );
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {

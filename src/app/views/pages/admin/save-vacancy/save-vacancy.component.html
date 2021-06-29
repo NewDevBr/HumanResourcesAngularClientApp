@@ -49,7 +49,7 @@
 
     <div class="form-group">
         <textarea class="form-control" formControlName="description" maxlength="3500"
-            placeholder="Type a vacancy description" rows="10"></textarea>
+            placeholder="Type a vacancy description" rows="8"></textarea>
         <ng-container *ngIf="formVacancy.controls.description.touched">
             <span class="text-danger" *ngIf="formVacancy.controls.description.errors">
                 Required field, valid description

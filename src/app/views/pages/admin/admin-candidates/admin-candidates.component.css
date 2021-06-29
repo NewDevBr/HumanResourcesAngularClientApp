@@ -1,0 +1,28 @@
+#empty {
+    max-width: 60%;
+    filter: opacity(45%);
+    max-width: 150px;
+    padding-top: 5%;
+}
+
+.load{
+    text-align: center;
+    min-height: 70%;
+}
+
+img {
+    max-width: 230px;
+    border-radius: 5px;
+    max-height: 155px;
+}
+
+.brandLinks{
+    max-width: 50px;
+}
+
+.profile {
+    max-width: 230px;
+    max-height: 155px;
+    min-height: 155px;
+    border-radius: 5px;
+}

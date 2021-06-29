@@ -50,15 +50,26 @@ export class AdminsManagementComponent implements OnInit {
     private toastService : ToastService
   ) {
     this.currentPage = 1;
+
     this.authAdmin.currentAdmin.subscribe(val => {
-      // this.url = "http://localhost:8000/storage/photos/" + val.data.pathPhoto.substring(15, val.data.pathPhoto.length);
-      this.admin_id = val.data.id;
+      let adminIsUndefined = (typeof val === "undefined");
+      if(!adminIsUndefined){
+        if(!!Object.values(val).length){
+          this.admin_id = val.data.id;
+        }
+      }
     });
+    
     this.api.administrativeGetAdmins(this.currentPage).subscribe(
       (response)=>{
         this.data = response;
         this.lastPage = this.data.meta.last_page;
         this.data = this.data.data;
+        this.data.forEach((admin: any) => {
+          if(admin.id == this.admin_id){
+            this.data.splice(this.data.indexOf(admin),1);
+          }
+        });
       }
     )
   }

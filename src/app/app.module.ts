@@ -24,6 +24,9 @@ import { SaveVacancyComponent } from './views/pages/admin/save-vacancy/save-vaca
 import { ListVacanciesComponent } from './views/pages/admin/list-vacancies/list-vacancies.component';
 import { AdminCandidatesComponent } from './views/pages/admin/admin-candidates/admin-candidates.component';
 import { AdminsManagementComponent } from './views/pages/admin/admins-management/admins-management.component';
+import { CandidateProfileComponent } from './views/pages/candidate/candidate-profile/candidate-profile.component';
+import { ListVacanciesCandidateComponent } from './views/pages/candidate/list-vacancies-candidate/list-vacancies-candidate.component';
+import { MySubscriptionsComponent } from './views/pages/candidate/my-subscriptions/my-subscriptions.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +44,9 @@ import { AdminsManagementComponent } from './views/pages/admin/admins-management
     ListVacanciesComponent,
     AdminCandidatesComponent,
     AdminsManagementComponent,
+    CandidateProfileComponent,
+    ListVacanciesCandidateComponent,
+    MySubscriptionsComponent,
   ],
   imports: [
     BrowserModule,

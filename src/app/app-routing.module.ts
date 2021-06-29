@@ -12,6 +12,9 @@ import { SaveVacancyComponent } from './views/pages/admin/save-vacancy/save-vaca
 import { ListVacanciesComponent } from './views/pages/admin/list-vacancies/list-vacancies.component';
 import { AdminCandidatesComponent } from './views/pages/admin/admin-candidates/admin-candidates.component';
 import { AdminsManagementComponent } from './views/pages/admin/admins-management/admins-management.component';
+import { CandidateProfileComponent } from './views/pages/candidate/candidate-profile/candidate-profile.component';
+import { MySubscriptionsComponent } from './views/pages/candidate/my-subscriptions/my-subscriptions.component';
+import { ListVacanciesCandidateComponent } from './views/pages/candidate/list-vacancies-candidate/list-vacancies-candidate.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -34,7 +37,14 @@ const routes: Routes = [
       { path: 'technologies', component: AdminTechnologiesComponent },
     ]
   },
-  //{ path: 'candidate', component: CandidateComponent, canActivate: [CandidateGuard]},
+  { path: 'candidate', component: PaginationComponent, canActivate: [CandidateGuard],
+    children: [
+      { path: '', pathMatch: 'full', redirectTo: 'vacancies' },
+      { path: 'profile', component: CandidateProfileComponent },
+      { path: 'vacancies', component: ListVacanciesCandidateComponent },
+      { path: 'mySubscriptions', component: MySubscriptionsComponent },
+    ]
+  },
 ];
 
 @NgModule({

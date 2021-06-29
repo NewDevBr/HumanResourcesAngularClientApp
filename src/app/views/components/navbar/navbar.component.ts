@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthAdminService } from 'src/app/services/authAdminService/auth-admin.service';
-import { ToastService } from 'src/app/services/toast/toast.service';
+import { AuthCandidateService } from 'src/app/services/authCandidateService/auth-candidate.service';
 
 @Component({
   selector: 'app-navbar',
@@ -10,26 +10,54 @@ import { ToastService } from 'src/app/services/toast/toast.service';
 })
 export class NavbarComponent implements OnInit {
 
+  isAdmin?: boolean;
+
+  adminRoutes : string [] = [
+    '/admin/technologies',
+    '/admin/vacancies',
+    '/admin/candidates',
+    '/admin/management',
+    '/admin/profile'
+  ];
+
+  candidateRoutes : string [] = [
+    '/candidate/vacancies',
+    '/candidate/mySubscriptions',
+    '/candidate/profile'
+  ];
+
   constructor(
     private router : Router,
     private authAdmin : AuthAdminService,
-    private toastService: ToastService,
-  ) { }
+    private authCandidate : AuthCandidateService,
+  ) {
+    this.authAdmin.currentAdmin.subscribe(val => {
+      let adminIsUndefined = (typeof val === "undefined");
+      if(!adminIsUndefined){
+        if(!!Object.values(val).length){
+          this.isAdmin = true;
+        }
+      }
+    });
 
-  logout(){
-    this.authAdmin.logout();
-    this.router.navigate(['login']);
-    this.toastService.show('I hope to see you again', {
-      classname: 'bg-primary text-light',
-      delay: 2000 ,
-      autohide: true
+    this.authCandidate.currentCandidate.subscribe(val => {
+      let candidateIsUndefined = (typeof val === "undefined");
+      if(!candidateIsUndefined){
+        if(!!Object.values(val).length){
+          this.isAdmin = false;
+        }
+      }
     });
   }
 
-  navbarCollapsed = true;
-
-  toggleNavbarCollapsing() {
-      this.navbarCollapsed = !this.navbarCollapsed;
+  logout(){
+    if(this.isAdmin){
+      this.authAdmin.logout();
+    } else {
+      this.authCandidate.logout();
+    }
+    this.router.navigate(['login']);
+    window.location.reload();
   }
 
   ngOnInit(): void {

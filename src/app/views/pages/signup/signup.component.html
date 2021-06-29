@@ -1,5 +1,5 @@
 <h1 class="container text-center mt-2">Sign UP!</h1>
-<div class="row mt-4 mb-4">
+<div class="row my-6">
   <div class="col">
     <div class="container">
   
@@ -74,8 +74,8 @@
           </div>
   
           <div class="form-check pb-4">
-            <input type="checkbox" formControlName="notify_email" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Check this if you want receive vacancancies news</label>
+            <input type="checkbox" [checked]="form.controls.notify_email.value" (change)="form.controls['notify_email'].setValue(!form.controls.notify_email.value)" class="form-check-input" id="notify_email">
+            <label class="form-check-label" for="notify_email">Check this if you want receive vacancancies news</label>
           </div>
   
           <div class="row">
@@ -93,4 +93,5 @@
     <img src="assets/images/signup.png" class="img-fluid" id="logoPhoto">    
   </div>
 </div>
+<div class="container my-6">.</div>
 <router-outlet></router-outlet>

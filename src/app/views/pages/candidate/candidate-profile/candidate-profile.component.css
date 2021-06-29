@@ -1,0 +1,34 @@
+img {
+    max-width: 230px;
+    max-height: 155px;
+    border-radius: 5px;
+}
+
+.editar {
+    float: right;
+}
+
+input{
+    max-width: 500px;
+}
+
+input[type=date] {
+    border-style: solid;
+    border-color: #ced4da;
+    border-radius: 4px;
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 10px;
+    color: #606060;
+    border-width: 1.4px;
+    font-size: 15px;
+}
+
+input[type=date]:read-only {
+    background-color:#e9ecef;
+}
+
+input[type=date]:focus {
+    outline-color:#bfdeff;
+}

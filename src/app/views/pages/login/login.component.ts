@@ -29,6 +29,15 @@ export class LoginComponent implements OnInit {
       }
     });
 
+    this.authAdmin.currentAdmin.subscribe(val => {
+      let adminIsUndefined = (typeof val === "undefined");
+      if(!adminIsUndefined){
+        if(!!Object.values(val).length){
+          this.router.navigate(['admin']);
+        }
+      }
+    });
+
     this.authCandidate.currentCandidate.subscribe(val => {
       let candidateIsUndefined = (typeof val === "undefined");
       if(!candidateIsUndefined){
@@ -37,6 +46,7 @@ export class LoginComponent implements OnInit {
         }
       }
     });
+
   }
 
   form = new FormGroup({
@@ -62,7 +72,7 @@ export class LoginComponent implements OnInit {
       this.authCandidate.login(this.formData.email.value, this.formData.password.value)
         .pipe(first())
         .subscribe(
-          () => {
+          (response) => {
             this.router.navigate(['candidate']);
             this.toastService.show("Welcome to Human Resources candidate", {
               classname: 'bg-primary text-light',
@@ -70,8 +80,8 @@ export class LoginComponent implements OnInit {
               autohide: true
             });
           },
-          (response) => {
-            this.toastService.show("Error trying to login as candidate " + response.body.message, {
+          () => {
+            this.toastService.show("Error trying to login as candidate", {
               classname: 'bg-danger text-light',
               delay: 3000,
               autohide: true

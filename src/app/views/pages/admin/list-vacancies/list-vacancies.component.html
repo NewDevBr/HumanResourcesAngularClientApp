@@ -3,8 +3,10 @@
     <img src="./assets/images/loading.gif">
 </div>
 
+
+
 <div *ngIf="data">
-    <div *ngFor="let vacancy of data; let i = index" class="card mt-2 mb-2">
+    <div *ngFor="let vacancy of data; let i = index" class="card my-5">
         <div class="card-header">
             <div class="row">
                 <h5 class="ml-4 font-weight-bold"> {{ vacancy.title }} </h5>
@@ -28,9 +30,9 @@
             </ng-container>
             <ng-template #updated_at>
                Last updated at {{ vacancy.updated_at | date: 'dd/MM/yyyy - HH:mm'}}
-            </ng-template> <br>
-            <label class="font-weight-bold mt-2"> Vacancy description</label> <br>
-            <label (click)="showMore[i] = !showMore[i]"> {{ showMore[i] ? vacancy.description : (vacancy.description | slice:0:500) + ' (Read more ...)' }} </label> 
+            </ng-template>
+            <br>
+            <label class="mt-4" (click)="showMore[i] = !showMore[i]"> {{ showMore[i] ? vacancy.description : (vacancy.description | slice:0:500) + ' (Read more ...)' }} </label> 
             
             <div class="row mx-auto mb-1 mt-4">
                 <label class="mr-auto my-auto"> Created by {{ vacancy.admin.name }} #{{ vacancy.admin.id }} </label>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ApiService } from 'src/app/services/api/api.service';
 
 @Component({
   selector: 'app-admin-vacancies',
@@ -11,7 +11,8 @@ export class AdminVacanciesComponent implements OnInit {
   showVacancyForm: boolean = false;
 
 
-  constructor() { }
+  constructor(private api: ApiService) {
+  }
 
   ngOnInit(): void {
   }

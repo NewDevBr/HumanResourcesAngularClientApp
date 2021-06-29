@@ -1,20 +1,23 @@
 <ul class="nav justify-content-center bg-dark rounded mt-2 mb-3">
-    <li class="nav-item">
-      <a class="nav-link text-light" routerLink="/admin/technologies">Techonologies</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link text-light" routerLink="/admin/vacancies">Vacancies</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link text-light" routerLink="/admin/candidates">Candidates</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link text-light" routerLink="/admin/management">Admins management</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link text-light" routerLink="/admin/profile">My profile</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link text-light" (click)="logout()">Logout</a>
-    </li>
-  </ul>
+  <ng-container *ngIf="isAdmin; else candidate">
+    <div *ngFor="let route of adminRoutes; index as i">
+      <span>
+        <li class="nav-item">
+          <a class="nav-link text-light" routerLink={{route}}> {{ route | slice:7:20 }}</a>
+        </li>        
+      </span>
+    </div>
+  </ng-container>
+  <ng-template #candidate>
+    <div *ngFor="let route of candidateRoutes; index as i">
+    <span>
+        <li class="nav-item">
+          <a class="nav-link text-light" routerLink={{route}}> {{ route | slice:11:28 }}</a>
+        </li>
+      </span>
+    </div>
+  </ng-template>
+  <li class="nav-item">
+    <a class="nav-link text-light" (click)="logout()">logout</a>
+  </li>
+</ul>

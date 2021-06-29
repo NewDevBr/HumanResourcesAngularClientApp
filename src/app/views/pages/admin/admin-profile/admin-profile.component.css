@@ -1,7 +1,7 @@
 img {
-    /* width: 200px; */
     max-width: 230px;
-    border-radius: 10px;
+    border-radius: 5px;
+    max-height: 155px;
 }
 
 .editar {

@@ -66,6 +66,24 @@
         <button type="submit" [hidden]="hideSaveChanges" [disabled]="!formNewPassword.valid" class="btn btn-primary mr-3">Change
           your password</button>
       </form>
+
+      <ng-container *ngIf="!hideSaveChanges">
+        <h3 class="mt-5">Change your photo</h3>
+        <form [formGroup]="formUpdatePhoto" (ngSubmit)="updatePhoto()">
+          <div class="form-group">
+            <input formControlName="img" type="file" accept="image/*" (change)="photoUpload($event)"
+              class="form-control" class="btn btn-outline-dark" required>
+            <ng-container *ngIf="formUpdatePhoto.controls.img.touched && !hideSaveChanges">
+              <span class="text-danger" *ngIf="formUpdatePhoto.controls.img.errors">
+                Required field, valid image
+              </span>
+            </ng-container>
+          </div>
+          <button type="submit" [hidden]="hideSaveChanges" [disabled]="!formUpdatePhoto.valid" class="btn btn-primary mr-3">Change
+            your profile photo</button>
+        </form>
+      </ng-container>
+
     </div>
   </div>
   <div class="mt-5">

@@ -1,37 +1,131 @@
-<div class="container mx-auto">
-    <form [formGroup]="formCandidate" (ngSubmit)="searchCandidate()" class="mt-5">
+<div class="container mx-auto my-4">
+    <form [formGroup]="formCandidate" class="mt-5">
         <h3>By what parameter do you want to search for a candidate?</h3>
         <div class="row mx-auto mt-4">
             <div class="form-check mr-3">
-                <input class="form-check-input" type="radio" name="parameter" formControlName="parameter" id="code" value="code"
-                    checked>
+                <input class="form-check-input" type="radio" (change)="formCandidate.controls.parameterValue.value ? searchCandidate() : null" name="parameter" formControlName="parameter" id="code"
+                    value="code" checked>
                 <label class="form-check-label" for="code">
-                    Identification code 
+                    Identification code
                 </label>
             </div>
             <div class="form-check mr-3">
-                <input formControlName="parameter" class="form-check-input" type="radio" name="parameter" id="name" value="name"
-                    checked>
-                <label class="form-check-label" for="name">
-                    Full name
-                </label>
-            </div>
-            <div class="form-check mr-3">
-                <input class="form-check-input" formControlName="parameter" type="radio" name="parameter" id="email" value="email"
-                    checked>
-                <label class="form-check-label" for="email">
-                    Email
-                </label>
-            </div>
-            <div class="form-check mr-3">
-                <input class="form-check-input" formControlName="parameter" type="radio" name="parameter" id="vacancycode" value="vacancycode"
-                    checked>
+                <input class="form-check-input" (change)="formCandidate.controls.parameterValue.value ? searchCandidate() : null" formControlName="parameter" type="radio" name="parameter"
+                    id="vacancycode" value="vacancycode" checked>
                 <label class="form-check-label" for="vacancycode">
-                    Vacancy identification code
+                    vacancy identification code
                 </label>
             </div>
-            <input type="text"  formControlName="parameterValue" (keyup)="searchCandidate()" class="ml-auto my-auto border border-dark rounded px-2 py-1" placeholder="Type a parameter" maxlength="45" size="45">
+            <input type="number" formControlName="parameterValue"
+                (keyup)="formCandidate.controls.parameterValue.value ? searchCandidate() : null"
+                class="ml-auto my-auto border border-dark rounded px-2 py-1" placeholder="Type a parameter"
+                maxlength="45">
         </div>
     </form>
 </div>
-<div class="h-100"></div>
+
+
+<div *ngIf="!candidatesData && formCandidate.controls.parameterValue.value" class="load">
+    <img src="./assets/images/loading.gif" id="empty">
+</div>
+
+<div *ngIf="!candidatesData && !formCandidate.controls.parameterValue.value" class="load">
+    <img src="./assets/images/lupa.png" id="empty" class="align-self-center">
+</div>
+
+
+<div *ngIf="candidatesData">
+
+
+    <div *ngIf="candidatesData.length == 0; else showCandidates" class="my-5">
+        <div class="row my-auto">
+            <div class="col-sm align-self-center">
+                <h1 class="text-center"> No Data </h1>
+            </div>
+            <div class="col-sm">
+                <img id="empty" src="./assets/images/empty.png" class="align-self-center">
+            </div>
+        </div>
+    </div>
+
+
+    <ng-template #showCandidates>
+
+        <div *ngIf="candidatesData.length == 1; else showAllCandidates">
+            <div class="container mx-auto my-5">
+
+                <div class="row">
+                    <div class="col-sm- ml-3 mb-2">
+                        <img class="profile" [src]="getSantizeUrl(candidatesData[0].pathPhoto)">
+                    </div>
+                    <div class="col-xl col-lg col-md col-sm col- ml-2 mr-3 text-left rounded bg-dark mb-2">
+                        <h2 class="text-light mt-5">{{ candidatesData[0].name }} #{{ candidatesData[0].id }}</h2>
+                        <label class="text-light">{{ candidatesData[0].titration }} | {{candidatesData[0].email}}</label>
+                    </div>
+                </div>
+                <div class="row mx-auto">
+                    <span *ngFor="let tech of candidatesData[0].technologies">
+                        <label class="mr-auto border border-dark rounded py-2 px-3 ml-1"> {{ tech.name }} </label>
+                    </span>
+                    <a class="ml-auto mr-2" href="https://{{candidatesData[0].linkedin}}" target="_blank"><img class="brandLinks" src="./assets/images/linkedin.png"></a>
+                    <a href="https://{{candidatesData[0].github}}" target="_blank"><img class="brandLinks" src="./assets/images/github.png"></a>
+                </div>
+                <h3 class="my-3"> Diplomas </h3>
+                <div class="row mx-auto">
+                    <table class="table table-striped border rounded mb-5">
+                        <thead>
+                            <tr>
+                                <th>Course</th>
+                                <th>Institution</th>
+                                <th>Course started at</th>
+                                <th>Course finished at</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let diploma of candidatesData[0].diplomas">
+                                <td> {{ diploma.institution }} </td>
+                                <td> {{ diploma.institution }} </td>
+                                <td> {{ diploma.initial_date | date: 'dd/MM/yyyy'}} </td>
+                                <td> {{ diploma.final_date | date: 'dd/MM/yyyy '}} </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <ng-template #showAllCandidates>
+            <div class="container mx-auto">
+               
+
+                    <table class="table mb-5">
+                        <tbody>
+                            <tr *ngFor="let candidate of candidatesData; let i = index">
+                                <td> <img class="profile" [src]="getSantizeUrl(candidate.pathPhoto)"> </td>
+                                <td class="col-xl col">
+                                    <div  class="card">
+                                        <div class="card-header" (click)="seeCandidate( candidate.id )">
+                                            <div class="row">
+                                                <h5 class="ml-4 font-weight-bold"> {{ candidate.name }} </h5>
+                                                <h5 class="ml-auto mr-4"> #id: {{ candidate.id }} </h5>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <label (click)="seeCandidate( candidate.id )">Email: {{ candidate.email }} </label>
+                                            <div class="row mx-auto">
+                                                <span *ngFor="let tech of candidatesData[0].technologies">
+                                                    <label class="border border-dark rounded py-2 px-3 mr-2"> {{ tech.name }} </label>
+                                                </span>
+                                                <a class="ml-auto mr-2" href="https://{{candidate.linkedin}}" target="_blank"><img class="brandLinks" src="./assets/images/linkedin.png"></a>
+                                                <a href="https://{{candidate.github}}" target="_blank"><img class="brandLinks" src="./assets/images/github.png"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </div>
+        </ng-template>
+    </ng-template>
+</div>

@@ -1,0 +1,47 @@
+<div *ngIf="!data" id="load">
+    <img src="./assets/images/loading.gif" id="loading" class="align-self-center">
+</div>
+
+<div *ngIf="data">
+    <div *ngIf="data.length == 0; else showVacanciesThatCandidateCanApply">
+        <div class="row my-auto">
+            <div class="col-sm align-self-center">
+                <h1 class="text-center"> No Data </h1>
+            </div>
+            <div class="col-sm">
+                <img id="empty" src="./assets/images/empty.png" class="align-self-center">
+            </div>
+        </div>
+    </div>
+    <ng-template #showVacanciesThatCandidateCanApply>
+        <span *ngFor="let vacancy of data; let i = index" class="card my-5">
+
+            <div class="card-header">
+                <div class="row">
+                    <h5 class="ml-4 font-weight-bold"> {{ vacancy.title }} </h5>
+                    <h5 class="ml-auto mr-4"> #id: {{ vacancy.id }} </h5>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row mx-auto">
+                    <label class="mr-auto"> Created at {{ vacancy.created_at | date: 'dd/MM/yyyy - HH:mm' }} </label>
+
+                    <label class="ml-1 rounded bg-dark text-light px-2 py-1">{{ vacancy.hiring }}</label>
+                    <label class="ml-1 bg-dark text-light rounded py-1 px-2">{{ vacancy.remote ? "Home Office" : "In
+                        enterprise" }}</label>
+                </div>
+
+                <ng-container *ngIf="vacancy.created_at == vacancy.updated_at; else updated_at">
+                    <span> Never updated </span>
+                </ng-container>
+                <ng-template #updated_at>
+                    Last updated at {{ vacancy.updated_at | date: 'dd/MM/yyyy - HH:mm'}}
+                </ng-template>
+                <br>
+                <label class="mt-4" (click)="showMore[i] = !showMore[i]"> {{ showMore[i] ? vacancy.description :
+                    (vacancy.description | slice:0:500) + ' (Read more ...)' }} </label>
+
+            </div>
+        </span>
+    </ng-template>
+</div>

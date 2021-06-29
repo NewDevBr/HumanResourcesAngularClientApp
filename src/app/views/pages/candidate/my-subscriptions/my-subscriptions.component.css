@@ -1,0 +1,12 @@
+#empty {
+    max-width: 60%;
+    filter: opacity(45%);
+}
+
+#loading {
+    max-width: 150px;
+}
+
+#load{
+    min-height: 70%;
+}

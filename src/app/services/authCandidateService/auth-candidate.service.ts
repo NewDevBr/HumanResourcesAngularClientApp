@@ -28,6 +28,12 @@ export class AuthCandidateService {
     }));
   }
 
+  updateData(newCandidate: Candidate | undefined){
+    localStorage.setItem('currentCandidate', JSON.stringify(newCandidate));
+    this.currentCandidateSubject.next(newCandidate);
+    return newCandidate;
+  }
+
   logout() {
     this.api.candidateLogout();
     localStorage.removeItem('currentCandidate');

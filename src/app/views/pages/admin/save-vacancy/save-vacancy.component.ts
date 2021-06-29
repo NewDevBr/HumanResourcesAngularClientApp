@@ -72,8 +72,14 @@ export class SaveVacancyComponent implements OnInit {
         }
       );
     }
-    this.authAdmin.currentAdmin.subscribe((val) => {
-      this.admin_id = val.data.id;
+
+    this.authAdmin.currentAdmin.subscribe(val => {
+      let adminIsUndefined = (typeof val === "undefined");
+      if(!adminIsUndefined){
+        if(!!Object.values(val).length){
+          this.admin_id = val.data.id;
+        }
+      }
     });
   }
 

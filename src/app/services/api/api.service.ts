@@ -13,6 +13,7 @@ export class ApiService {
   ADMIN_ROUTE: string = this.SERVER_ADDR + "/admin";
   TECH_ROUTE: string = this.SERVER_ADDR + "/technology";
   VACANCY_ROUTE: string = this.SERVER_ADDR + "/vacancy";
+  DIPLOMA_ROUTE: string = this.SERVER_ADDR + "/diploma";
 
   signup(parameters: any) {
     var formData: any = new FormData();
@@ -24,20 +25,24 @@ export class ApiService {
     formData.append("password", parameters.password);
     formData.append("github", parameters.github);
     formData.append("linkedin", parameters.linkedin);
-    formData.append("notify_email", parameters.notify_email ? true : false);
+    formData.append("notify_email", parameters.notify_email ? 1 : 0);
     return this.http.post(this.CANDIDATE_ROUTE, formData, { observe: 'response' });
   }
 
-
+  administrativeUpdateProfilePhoto(idAdmin: number, img: any) {
+    var formData: any = new FormData();
+    formData.append("img", img);
+    return this.http.post(this.ADMIN_ROUTE + '/photo/' + idAdmin, formData);
+  }
 
   administrativeSaveAdmin(
     img: any,
     name: string,
     post: string,
     email: string,
-    password : string,
-    admin_id : number
-  ){
+    password: string,
+    admin_id: number
+  ) {
     var formData: any = new FormData();
     formData.append("img", img);
     formData.append("name", name);
@@ -48,7 +53,7 @@ export class ApiService {
     return this.http.post(this.ADMIN_ROUTE, formData, { observe: 'response' });
   }
 
-  administrativeRevokePrivilegies(adminId: number){
+  administrativeRevokePrivilegies(adminId: number) {
     return this.http.delete(this.ADMIN_ROUTE + '/' + adminId);
   }
 
@@ -134,7 +139,6 @@ export class ApiService {
     });
   }
 
-
   getAVacancy(idVacancy: number) {
     return this.http.get(this.VACANCY_ROUTE + '/' + idVacancy);
   }
@@ -164,4 +168,109 @@ export class ApiService {
   deleteVacancy(vacancyId: number) {
     return this.http.delete(this.VACANCY_ROUTE + '/' + vacancyId);
   }
+
+  updateCandidateData(
+    idCandidate: number,
+    name: string,
+    titration: string,
+    birthDate: Date,
+    email: string,
+    github: string,
+    linkedin: string,
+    notify_email: number
+  ) {
+    return this.http.put(this.CANDIDATE_ROUTE + '/' + idCandidate, {
+      name: name,
+      titration: titration,
+      birthDate: birthDate,
+      email: email,
+      github: github,
+      linkedin: linkedin,
+      notify_email: notify_email
+    });
+  }
+
+  updateCandidatePassword(idCandidate: number, password: string) {
+    return this.http.put(this.CANDIDATE_ROUTE + '/changePassword/' + idCandidate, {
+      password: password
+    });
+  }
+
+  candidateUpdateProfilePhoto(idCandidate: number, img: any) {
+    var formData: any = new FormData();
+    formData.append("img", img);
+    return this.http.post(this.ADMIN_ROUTE + '/photo/' + idCandidate, formData);
+  }
+
+  createNewDiploma(
+    idCandidate: number,
+    course: string,
+    institution: string,
+    initial_date: Date,
+    final_date: Date
+  ) {
+    return this.http.post(this.DIPLOMA_ROUTE + '/candidate/' + idCandidate, {
+      course: course,
+      institution: institution,
+      initial_date: initial_date,
+      final_date: final_date
+    });
+  }
+
+  deleteDiploma(diplomaId: number) {
+    return this.http.delete(this.DIPLOMA_ROUTE + '/' + diplomaId);
+  }
+
+  getDiplomasByCandidateId(idCandidate: number) {
+    return this.http.get(this.DIPLOMA_ROUTE + '/candidate/' + idCandidate);
+  }
+
+  updateDiploma(
+    diplomaId: number,
+    course: string,
+    institution: string,
+    initial_date: Date,
+    final_date: Date
+  ) {
+    return this.http.put(this.DIPLOMA_ROUTE + '/' + diplomaId, {
+      course: course,
+      institution: institution,
+      initial_date: initial_date,
+      final_date: final_date
+    });
+  }
+
+  saveTechnologiesThatCandidateKnows(candidateId: number, technologies: any) {
+    return this.http.post(this.CANDIDATE_ROUTE + '/TechnologiesThatCandidateKnows/' + candidateId, {
+      technologies: technologies
+    });
+  }
+
+  getTechnologiesThatCandidateKnows(candidateId: number) {
+    return this.http.get(this.TECH_ROUTE + '/candidate/' + candidateId);
+  }
+
+  applyVacancy(candidateId: number, vacancyId: number) {
+    return this.http.post(this.VACANCY_ROUTE + '/apply', {
+      candidate_id: candidateId,
+      vacancy_id: vacancyId
+    });
+  }
+
+  getAppliedVacancies(candidateId: number) {
+    return this.http.get(this.VACANCY_ROUTE + "/applied/" + candidateId);
+  }
+
+  getapplicableVacancies(candidateId: number) {
+    return this.http.get(this.VACANCY_ROUTE + '/applicable/+' + candidateId);
+  }
+
+  getCandidateById(idCandidate: number){
+    return this.http.get(this.CANDIDATE_ROUTE + '/'+ idCandidate);
+  }
+
+  getCandidateByVacancyId(vacancyId: number){
+    return this.http.get(this.CANDIDATE_ROUTE + '/vacancy/'+ vacancyId);
+  }
+
 }
