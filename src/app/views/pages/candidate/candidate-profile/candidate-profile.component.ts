@@ -202,17 +202,16 @@ export class CandidateProfileComponent implements OnInit {
   }
 
   updatePhoto() {
-    this.api.administrativeUpdateProfilePhoto(
+    this.api.candidateUpdateProfilePhoto(
       this.currentCandidate!.data.id,
       this.formUpdatePhoto.controls.img.value
     ).subscribe((response) => {
       let path: any = response;
-      this.url = this.host + path.path.substring(15, path.path.length);
+      this.url = this.host + path.path.substring(15, path.path.lenght);
       this.currentCandidate!.data.pathPhoto = path.path;
       this.hideSaveChanges = true;
       this.currentCandidate!.data.pathPhoto = path.path;
       this.authCandidate.updateData(this.currentCandidate);
-      this.formUpdatePhoto.controls['img'].setValue('');
       this.toastService.show('Your profile photo was changed', {
         classname: 'bg-success text-light',
         delay: 8000,

@@ -199,7 +199,7 @@ export class ApiService {
   candidateUpdateProfilePhoto(idCandidate: number, img: any) {
     var formData: any = new FormData();
     formData.append("img", img);
-    return this.http.post(this.ADMIN_ROUTE + '/photo/' + idCandidate, formData);
+    return this.http.post(this.CANDIDATE_ROUTE + '/photo/' + idCandidate, formData);
   }
 
   createNewDiploma(
