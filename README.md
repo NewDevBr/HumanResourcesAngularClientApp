@@ -1,27 +1,21 @@
-# HumanResources
+# Welcome to Human Resources (Client Application)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.2.
 
-## Development server
+### Project status
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+![Badge](https://img.shields.io/static/v1?label=Framwork&message=Angular&color=red&style=for-the-badge&logo=angular) ![Badge](https://img.shields.io/static/v1?label=STORAGE&message=LARAVEL_API&color=blue&style=for-the-badge&logo=PHP) ![Badge](https://img.shields.io/static/v1?label=Database&message=MYSQL&color=blue&style=for-the-badge&logo=mysql) ![Badge](https://img.shields.io/static/v1?label=Project_Stage&message=progressing&color=sucess&style=for-the-badge) 
 
-## Code scaffolding
+### Index
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+1. [Abstract](#abstract)
+2. [Client Application Views](#clientApplicationViews)
+	1. [Public Routes](#publicRoutes)
+		1. [Login Route](#loginRoute)
+		2. [Candidate Register](#candidateRegister)
+	2. [Private Routes](#privateRoutes)
+		1. [Candidate Routes](#candidateRoutes)
+		2. [Admin Routes](#adminRoutes)
+3. [About Angular](#aboutAngular)
+4. [About Laravel API](#aboutLaravelAPI)
+5. [About MySQL](#aboutMySQLCommunity)
+6. [Third Party Resources](#thirdPartyResources)

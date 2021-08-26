@@ -191,7 +191,11 @@ export class AdminProfileComponent implements OnInit {
         autohide: true
       });
     }, (response) => {
-      console.log(response);
+      this.toastService.show('Error trying to update your photo ' + response.error.message, {
+        classname: 'bg-danger text-light',
+        delay: 8000,
+        autohide: true
+      });
     });
   }
 
