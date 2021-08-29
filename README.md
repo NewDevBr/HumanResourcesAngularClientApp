@@ -5,6 +5,7 @@
 
 ![Badge](https://img.shields.io/static/v1?label=Framwork&message=Angular&color=red&style=for-the-badge&logo=angular) ![Badge](https://img.shields.io/static/v1?label=STORAGE&message=LARAVEL_API&color=blue&style=for-the-badge&logo=PHP) ![Badge](https://img.shields.io/static/v1?label=Database&message=MYSQL&color=blue&style=for-the-badge&logo=mysql) ![Badge](https://img.shields.io/static/v1?label=Project_Stage&message=progressing&color=sucess&style=for-the-badge) 
 
+
 ### Index
 
 1. [Abstract](#abstract)
@@ -21,16 +22,36 @@
 6. [Third Party Resources](#thirdPartyResources)
 
 
-
 ### 1. Abstract <a name="abstract">
 
 Currently, the market demand by web developers pass by a high climax. Programmers that have skills in web development, API consume, experience in increment and fixing web systems are recruited for participate in selective and hiring processes. That project was designed to demonstrate important development concepts using Angular framework, JS, HTML and CSS languages, MySQL database, a Laravel API and outher third-part dependencies. The employed methodology to develope this site was Angular documentation reading and searchs on StackOverflow website to solve doubts. Human resources consume JSON data format and implements methods to image upload, authentication (protected routes), data pagination, admins management and multiple CRUD's. The project results are very satisfying and objectivies are all goals have been achieved. 
 
+
 ### 2. Client App Views <a name="clientAppViews">
+
+
+
+### 2.1 Public Routes <a name="publicRoutes">
+
+### 2.1.1 Login Route <a name="loginRoute">
+
+### 2.1.2 Candidate Register <a name="candidateRegister">
+
+### 2.2 Private Routes <a name="privateRoutes">
+
+### 2.2.1 Candidate Routes <a name="candidateRoutes">
+
+### 2.2.2 Admin Routes <a name="adminRoutes">
+
+
 
 ### 3. About Angular <a name="aboutAngular">
 
+
+
 ### 4. About Laravel API <a name="aboutLaravelAPI">
+
+The API developed for this project can be seen at: [LINK](https://github.com/NewDevBr/HumanResourcesLaravelAPI)
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
