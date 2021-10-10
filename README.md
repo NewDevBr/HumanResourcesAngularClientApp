@@ -42,7 +42,7 @@ Candidates and admins can login using same page, however Admin users should clic
 ### 2.1.2 Candidate Register <a name="candidateRegister">
 
 ![Candidate register page](src/assets/images/canidate-register-1.jpeg)
-![Candidate register page](src/assets/images/canidate-register-2.jpeg)
+![Candidate register page](src/assets/images/candidate-register-2.jpeg)
 
 ### 2.2 Private Routes <a name="privateRoutes">
 
