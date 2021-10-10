@@ -41,33 +41,36 @@ Candidates and admins can login using same page, however Admin users should clic
 
 ### 2.1.2 Candidate Register <a name="candidateRegister">
 
-![Candidate register page](src/assets/images/canidate-register-1.jpeg)
-![Candidate register page](src/assets/images/candidate-register-2.jpeg)
+![Candidate register page 1](src/assets/images/candidate-register-1.jpeg) <br>
+![Candidate register page 2](src/assets/images/candidate-register-2.jpeg)
 
 ### 2.2 Private Routes <a name="privateRoutes">
 
 ### 2.2.1 Candidate Routes <a name="candidateRoutes">
 
-![Candidate vacancies list](src/assets/images/candidates-vacancies.jpeg)
-![Candidate profile 1](src/assets/images/candidate-profile-1.jpeg)
-![Candidate profile 2](src/assets/images/candidate-profile-2.jpeg)
+![Candidate vacancies list](src/assets/images/candidates-vacancies.jpeg) <br>
+![Candidate profile 1](src/assets/images/candidate-profile-1.jpeg) <br>
+![Candidate profile 2](src/assets/images/candidate-profile-2.jpeg) <br>
 ![Candidate profile 3](src/assets/images/candidate-profile-3.jpeg)
 
 ### 2.2.2 Admin Routes <a name="adminRoutes">
 
-![Admin profile 1](src/assets/images/admin-profile-1.jpeg)
-![Admin profile 2](src/assets/images/admin-profile-2.jpeg)
-![Admin management](src/assets/images/admin-mgmt-1.jpeg)
-![Admin vacancies list 1](src/assets/images/admin-vacancies-list.jpeg)
-![Admin vacancies list 2](src/assets/images/admin-vacancies-list-2.jpeg)
-![Admin vacancies list expanded](src/assets/images/admin-vacancies-list-expanded.jpeg)
-![Admin register new vacancy 0](src/assets/images/admin-vacancies-new-0.jpeg)
-![Admin register new vacancy 1](src/assets/images/admin-vacancies-new.jpeg)
+![Admin profile 1](src/assets/images/admin-profile-1.jpeg) <br>
+![Admin profile 2](src/assets/images/admin-profile-2.jpeg) <br>
+![Admin management](src/assets/images/admin-mgmt-1.jpeg) <br>
+![Admin vacancies list 1](src/assets/images/admin-vacancies-list.jpeg) <br>
+![Admin vacancies list 2](src/assets/images/admin-vacancies-list-2.jpeg) <br>
+
+When any user click on vacancy description, this show/hide more text
+
+![Admin vacancies list expanded](src/assets/images/admin-vacancies-list-expanded.jpeg) <br>
+![Admin register new vacancy 0](src/assets/images/admin-vacancies-new-0.jpeg) <br>
+![Admin register new vacancy 1](src/assets/images/admin-vacancies-new.jpeg) <br>
 ![Admin register new vacancy 2](src/assets/images/admin-vacancies-new-2.jpeg)
 
 ### 3. About Angular <a name="aboutAngular">
 
-
+Angular is a platform for building mobile and desktop web applications (Text extracted from angular official website). [Click here to see Angular docs](https://angular.io/docs)
 
 ### 4. About Laravel API <a name="aboutLaravelAPI">
 
@@ -92,3 +95,6 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 MySQL is a Database Management System (DMS), based on structured tables and entities relationship. This is the most famous database, maintained by Oracle according to Stack Overflow (SO) Survey 2020 [SO survey](https://insights.stackoverflow.com/survey/2020#technology-databases-all-respondents4). Software version used to construct it was MySQL Community version, available to download in: [MySQL Community Downloads](https://dev.mysql.com/downloads/)
 
 ### 6. Third Party Resources <a name="thirdPartyResources">
+
+Image visible on candidate register page: [Link to page](https://storyset.com/rafiki)
+Image visible on login page: [Link to page](https://storyset.com/bro)
