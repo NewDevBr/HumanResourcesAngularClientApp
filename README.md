@@ -35,15 +35,35 @@ Currently, the market demand by web developers pass by a high climax. Programmer
 
 ### 2.1.1 Login Route <a name="loginRoute">
 
+Candidates and admins can login using same page, however Admin users should click in checkbox indicating that is admin.
+
+![Login page](src/assets/images/login-page.jpeg)
+
 ### 2.1.2 Candidate Register <a name="candidateRegister">
+
+![Candidate register page](src/assets/images/canidate-register-1.jpeg)
+![Candidate register page](src/assets/images/canidate-register-2.jpeg)
 
 ### 2.2 Private Routes <a name="privateRoutes">
 
 ### 2.2.1 Candidate Routes <a name="candidateRoutes">
 
+![Candidate vacancies list](src/assets/images/candidates-vacancies.jpeg)
+![Candidate profile 1](src/assets/images/candidate-profile-1.jpeg)
+![Candidate profile 2](src/assets/images/candidate-profile-2.jpeg)
+![Candidate profile 3](src/assets/images/candidate-profile-3.jpeg)
+
 ### 2.2.2 Admin Routes <a name="adminRoutes">
 
-
+![Admin profile 1](src/assets/images/admin-profile-1.jpeg)
+![Admin profile 2](src/assets/images/admin-profile-2.jpeg)
+![Admin management](src/assets/images/admin-mgmt-1.jpeg)
+![Admin vacancies list 1](src/assets/images/admin-vacancies-list.jpeg)
+![Admin vacancies list 2](src/assets/images/admin-vacancies-list-2.jpeg)
+![Admin vacancies list expanded](src/assets/images/admin-vacancies-list-expanded.jpeg)
+![Admin register new vacancy 0](src/assets/images/admin-vacancies-new-0.jpeg)
+![Admin register new vacancy 1](src/assets/images/admin-vacancies-new.jpeg)
+![Admin register new vacancy 2](src/assets/images/admin-vacancies-new-2.jpeg)
 
 ### 3. About Angular <a name="aboutAngular">
 
@@ -51,7 +71,7 @@ Currently, the market demand by web developers pass by a high climax. Programmer
 
 ### 4. About Laravel API <a name="aboutLaravelAPI">
 
-The API developed for this project can be seen at: [LINK](https://github.com/NewDevBr/HumanResourcesLaravelAPI)
+The API developed for this project can be seen at: [Go to Laravel API](https://github.com/NewDevBr/HumanResourcesLaravelAPI)
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
